@@ -26,12 +26,15 @@ void Contrato::gerarParcelas() {
 }
 
 void Contrato::exibirContrato() {
-    std::cout << "--- Contrato ---" << std::endl;
-    std::cout << "Numero: " << numero << std::endl;
+    std::cout << "--- Contrato " << numero << " ---" << std::endl;
     std::cout << "Valor Total: R$ " << valorTotal << std::endl;
-    std::cout << "Quantidade de Parcelas: " << qtdParcelas << std::endl;
-    std::cout << "Parcelas:" << std::endl;
+    std::cout << "Parcelado em: " << qtdParcelas  << std::endl;
     for (auto parcela : parcelas) {
-        std::cout << "Parcela " << parcela.getNumero() << ": R$ " << parcela.getValor() << std::endl;
+        std::cout << "Parcela " << parcela.getNumero() << ": R$ " << parcela.getValor();
+        if (parcela.estaPaga()) {
+            std::cout << " - Pago" << std::endl;
+        } else {
+            std::cout << " - Aberto" << std::endl;
+        }
     }
 }

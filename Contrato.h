@@ -14,6 +14,10 @@ class Contrato {
     public:
         Contrato();
 
+        std::vector<Parcela> getParcelas() {
+            return parcelas;
+        }
+
         void setNumero(int numero){
             this->numero = numero;
         } 

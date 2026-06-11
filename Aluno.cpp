@@ -7,5 +7,5 @@ Aluno::Aluno() {
 
 void Aluno::exibirDados() {
     Pessoa::exibirDados(); //chama o método da classe pai(pessoa) para exibir os dados comuns
-    std::cout << "Matrícula: " << matricula << std::endl;
+    std::cout << "Matricula: " << matricula << std::endl;
 }
