@@ -1,5 +1,5 @@
-// O Run Code compila só o arquivo aberto, causando erros com múltiplos .cpp/.h
-// Solução: Settings (Ctrl+,) em "code-runner.executorMap" em "Edit in settings.json"
+// O Run Code do vscode compila só o arquivo aberto e causa erros com múltiplos .cpp/.h
+//  Settings (Ctrl+,) em "code-runner.executorMap" em "Edit in settings.json"
 // Adicionar: "cpp": "cd $dir && g++ *.cpp -o programa && ./programa" para compilar todos
 
 #include <iostream>
@@ -11,7 +11,7 @@
 #include "Contrato.h"
 using namespace std;
 
-int main() {
+int main(){
 
     vector<Aluno> alunos;
     vector<Funcionario> funcionarios;
@@ -25,7 +25,9 @@ int main() {
         cout << "2 - Cadastrar funcionario\n";
         cout << "3 - Cadastrar curso\n";
         cout << "4 - Realizar venda\n";
-        cout << "5 - Listar contratos\n";
+        cout << "5 - Listar alunos\n";
+        cout << "6 - Listar cursos\n";
+        cout << "7 - Listar contratos\n";
         cout << "0 - Sair\n";
 
         cout << "\nEscolha uma opcao: ";
@@ -117,13 +119,81 @@ int main() {
                 cout << "\n---Curso cadastrado com sucesso!---\n";
                 break;
             }
-            case 4:
+            case 4:{
+                if(alunos.empty() || funcionarios.empty() || cursos.empty()) {
+                    std::cout << "\nCadastre pelo menos um aluno, funcionario e curso antes da venda.\n";
+                    break;
+                }
+
+                int indiceAluno;
+                int indiceFuncionario;
+                int indiceCurso;
+                int qtdParcelas;
+
+                std::cout << "\n=== ALUNOS ===\n";
+                for(size_t i = 0; i < alunos.size(); i++) {
+                    std::cout << i + 1 << " - " << alunos[i].getNome() << std::endl;
+                }
+                std::cout << "Escolha o aluno: ";
+                std::cin >> indiceAluno;
+                indiceAluno--;
+
+                std::cout << "\n=== FUNCIONARIOS ===\n";
+                for(size_t i = 0; i < funcionarios.size(); i++) {
+                    std::cout << i + 1 << " - " << funcionarios[i].getNome() << std::endl;
+                }
+                std::cout << "Escolha o funcionario: ";
+                std::cin >> indiceFuncionario;
+                indiceFuncionario--;
+
+                std::cout << "\n=== CURSOS ===\n";
+                for(size_t i = 0; i < cursos.size(); i++) {
+                    std::cout << i + 1 << " - " << cursos[i].getNome() << " (R$ " << cursos[i].getValor() << ")" << std::endl;
+                }
+                std::cout << "Escolha o curso: ";
+                std::cin >> indiceCurso;
+                indiceCurso--;
+
+                std::cout << "Quantidade de parcelas:";
+                std::cin >> qtdParcelas;
+
+                Venda venda;
+                venda.setNumero(contratos.size() + 1);
+
+                Contrato contrato = venda.realizarVenda(alunos[indiceAluno], cursos[indiceCurso], 
+                                    funcionarios[indiceFuncionario], qtdParcelas);
+                contratos.push_back(contrato);
+
+                std::cout << "\nVenda realizada com sucesso!\n";
+                contrato.exibirContrato();
                 break;
-            case 5:
+            }
+            case 5: {
+                cout << "\n===== ALUNOS =====\n";
+                for(size_t i = 0; i < alunos.size(); i++) {
+                    cout << "\nAluno " << i + 1 << endl;
+                    alunos[i].exibirDados();
+                }
                 break;
-        }
+            }
+            case 6: {
+                cout << "\n===== CURSOS =====\n";
+                for(size_t i = 0; i < cursos.size(); i++) {
+                    cout << "\nCurso " << i + 1 << endl;
+                    cursos[i].exibirCursos();
+                }
+                break;
+            }
+            case 7: {
+                cout << "\n===== LISTA DE CONTRATOS =====\n";
+                for(size_t i = 0; i < contratos.size(); i++) {
+                    cout << "\nContrato " << i + 1 << endl;
+                    contratos[i].exibirContrato();
+                }
+                break;
+            }
+        } 
     } while(opcao != 0);
 
     return 0;
-
 }
