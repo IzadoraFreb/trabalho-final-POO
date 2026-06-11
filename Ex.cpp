@@ -136,7 +136,11 @@ int main(){
                 }
                 std::cout << "Escolha o aluno: ";
                 std::cin >> indiceAluno;
-                indiceAluno--;
+                indiceAluno--; //busca pelo indice correto do aluno escolhido
+                if (indiceAluno <=0 || indiceAluno >= alunos.size()){
+                    std::cout << "\nAluno invalido, tente novamente.\n";
+                    break;
+                }
 
                 std::cout << "\n=== FUNCIONARIOS ===\n";
                 for(size_t i = 0; i < funcionarios.size(); i++) {
@@ -145,6 +149,10 @@ int main(){
                 std::cout << "Escolha o funcionario: ";
                 std::cin >> indiceFuncionario;
                 indiceFuncionario--;
+                if (indiceFuncionario <=0 || indiceFuncionario >= funcionarios.size()){
+                    std::cout << "\nFuncionario invalido, tente novamente.\n";
+                    break;
+                }
 
                 std::cout << "\n=== CURSOS ===\n";
                 for(size_t i = 0; i < cursos.size(); i++) {
@@ -153,6 +161,10 @@ int main(){
                 std::cout << "Escolha o curso: ";
                 std::cin >> indiceCurso;
                 indiceCurso--;
+                if (indiceCurso <=0 || indiceCurso >= cursos.size()){
+                    std::cout << "\nCurso invalido, tente novamente.\n";
+                    break;
+                }
 
                 std::cout << "Quantidade de parcelas:";
                 std::cin >> qtdParcelas;
