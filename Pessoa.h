@@ -11,6 +11,7 @@ class Pessoa {
 
     public:
         Pessoa();
+        virtual ~Pessoa() {} //destrutor virtual para garantir a limpeza correta de recursos em classes derivadas
 
         void setNome(std::string nome) {
             this->nome = nome;
@@ -33,11 +34,6 @@ class Pessoa {
             return telefone;
         }
 
-        virtual void exibirDados() const {
-            std::cout << "--- Dados da Pessoa ---" << std::endl;
-            std::cout << "Nome: " << this->nome << std::endl;
-            std::cout << "CPF: " << this->cpf << std::endl;
-            std::cout << "Telefone: " << this->telefone << std::endl;
-        }
+        virtual void exibirDados();
 };
 #endif
