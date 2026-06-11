@@ -9,7 +9,7 @@ Curso::Curso() {
 
 void Curso::exibirCursos() {
     std::cout << "--- Curso ---" << std::endl;
-    std::cout << "Código: " << codigo << std::endl;
+    std::cout << "Codigo: " << codigo << std::endl;
     std::cout << "Nome: " << nome << std::endl;
     std::cout << "Valor: R$ " << valor << std::endl;
 }
