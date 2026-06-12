@@ -43,17 +43,37 @@ int main(){
 
                 cout << "\n--- Cadastrando Aluno ---";
                 cin.ignore();
-                cout << "\nNome: ";
-                getline(cin, nome);
+                do{
+                    cout << "\nNome: ";
+                    getline(cin, nome);
+                    if(nome.empty()) {
+                        cout << "\nNome invalido, tente novamente.\n";
+                    }
+                } while(nome.empty());
 
-                cout << "CPF: ";
-                getline(cin, cpf);
+                do{
+                    cout << "CPF: ";
+                    getline(cin, cpf);
+                    if(cpf.empty()) {
+                        cout << "\nCPF invalido, tente novamente.\n";
+                    }
+                } while(cpf.empty());
 
-                cout << "Telefone: ";
-                getline(cin, telefone);
+                 do{
+                    cout << "Telefone: ";
+                    getline(cin, telefone);
+                    if(telefone.empty()) {
+                        cout << "\nTelefone invalido, tente novamente.\n";
+                    } 
+                } while(telefone.empty());
 
-                cout << "Matricula: ";
-                cin >> matricula;
+                 do{
+                    cout << "Matricula: ";
+                    cin >> matricula;
+                    if(matricula <= 0) {
+                        cout << "\nMatricula invalida, tente novamente.\n";
+                    }
+                 }while(matricula <= 0);
 
                 aluno.setNome(nome);
                 aluno.setCpf(cpf);
@@ -73,17 +93,37 @@ int main(){
 
                 cin.ignore();
                 cout << "\n--- Cadastrando Funcionario ---";
-                cout << "\nNome: ";
-                getline(cin, nome);
+                do{
+                    cout << "\nNome: ";
+                    getline(cin, nome);
+                    if(nome.empty()) {
+                        cout << "\nNome invalido, tente novamente.\n";
+                    }
+                } while(nome.empty());
 
-                cout << "CPF: ";
-                getline(cin, cpf);
+                do{
+                    cout << "CPF: ";
+                    getline(cin, cpf);
+                    if(cpf.empty()) {
+                        cout << "\nCPF invalido, tente novamente.\n";
+                    }
+                } while(cpf.empty());
 
-                cout << "Telefone: ";
-                getline(cin, telefone);
+                do{
+                    cout << "Telefone: ";
+                    getline(cin, telefone);
+                    if(telefone.empty()) {
+                        cout << "\nTelefone invalido, tente novamente.\n";
+                    }
+                } while(telefone.empty());
 
-                cout << "Cargo: ";
-                getline(cin, cargo);
+                do{
+                    cout << "Cargo: ";
+                    getline(cin, cargo);
+                    if(cargo.empty()) {
+                        cout << "\nCargo invalido, tente novamente.\n";
+                    }
+                } while(cargo.empty());
 
                 funcionario.setNome(nome);
                 funcionario.setCpf(cpf);
@@ -101,15 +141,30 @@ int main(){
                 double valor;
 
                 cout << "\n--- Cadastrando Curso ---";
-                cout << "\nCodigo: ";
-                cin >> codigo;
-                cin.ignore();
+                do{
+                    cout << "\nCodigo: ";
+                    cin >> codigo;
+                    cin.ignore();
+                    if(codigo <= 0) {
+                        cout << "\nCodigo invalido, tente novamente.\n";
+                    }
+                } while(codigo <= 0);
 
-                cout << "Nome: ";
-                getline(cin, nome);
+                do{
+                    cout << "Nome: ";
+                    getline(cin, nome);
+                    if(nome.empty()) {
+                        cout << "\nNome invalido, tente novamente.\n";
+                    }
+                } while(nome.empty());
 
-                cout << "Valor: ";
-                cin >> valor;
+                do{
+                    cout << "Valor: ";
+                    cin >> valor;
+                    if(valor < 0) {
+                        cout << "\nValor invalido, tente novamente.\n";
+                    }
+                } while(valor < 0);
 
                 curso.setCodigo(codigo);
                 curso.setNome(nome);
@@ -121,7 +176,7 @@ int main(){
             }
             case 4:{
                 if(alunos.empty() || funcionarios.empty() || cursos.empty()) {
-                    std::cout << "\nCadastre pelo menos um aluno, funcionario e curso antes da venda.\n";
+                    cout << "\nCadastre pelo menos um aluno, funcionario e curso antes da venda.\n";
                     break;
                 }
 
@@ -130,44 +185,48 @@ int main(){
                 int indiceCurso;
                 int qtdParcelas;
 
-                std::cout << "\n=== ALUNOS ===\n";
+                cout << "\n=== ALUNOS ===\n";
                 for(size_t i = 0; i < alunos.size(); i++) {
-                    std::cout << i + 1 << " - " << alunos[i].getNome() << std::endl;
+                    cout << i + 1 << " - " << alunos[i].getNome() << std::endl;
                 }
-                std::cout << "Escolha o aluno: ";
-                std::cin >> indiceAluno;
-                indiceAluno--; //busca pelo indice correto do aluno escolhido
-                if (indiceAluno <=0 || indiceAluno >= alunos.size()){
-                    std::cout << "\nAluno invalido, tente novamente.\n";
-                    break;
-                }
+                do{
+                    cout << "Escolha o aluno: ";
+                    cin >> indiceAluno;
+                    indiceAluno--; //busca pelo indice correto do aluno escolhido
+                    if (indiceAluno < 0 || indiceAluno >= alunos.size()){
+                        cout << "\nAluno invalido, tente novamente.\n";
+                    }
+                } while(indiceAluno < 0 || indiceAluno >= alunos.size());
 
-                std::cout << "\n=== FUNCIONARIOS ===\n";
+
+                cout << "\n=== FUNCIONARIOS ===\n";
                 for(size_t i = 0; i < funcionarios.size(); i++) {
-                    std::cout << i + 1 << " - " << funcionarios[i].getNome() << std::endl;
+                    cout << i + 1 << " - " << funcionarios[i].getNome() << std::endl;
                 }
-                std::cout << "Escolha o funcionario: ";
-                std::cin >> indiceFuncionario;
-                indiceFuncionario--;
-                if (indiceFuncionario <=0 || indiceFuncionario >= funcionarios.size()){
-                    std::cout << "\nFuncionario invalido, tente novamente.\n";
-                    break;
-                }
+                do{
+                    cout << "Escolha o funcionario: ";
+                    cin >> indiceFuncionario;
+                    indiceFuncionario--;
+                    if (indiceFuncionario < 0 || indiceFuncionario >= funcionarios.size()){
+                        cout << "\nFuncionario invalido, tente novamente.\n";
+                    }
+                }while(indiceFuncionario < 0 || indiceFuncionario >= funcionarios.size());
 
-                std::cout << "\n=== CURSOS ===\n";
+                cout << "\n=== CURSOS DISPONIVEIS ===\n";
                 for(size_t i = 0; i < cursos.size(); i++) {
-                    std::cout << i + 1 << " - " << cursos[i].getNome() << " (R$ " << cursos[i].getValor() << ")" << std::endl;
+                    cout << i + 1 << " - " << cursos[i].getNome() << " (R$ " << cursos[i].getValor() << ")" << std::endl;
                 }
-                std::cout << "Escolha o curso: ";
-                std::cin >> indiceCurso;
-                indiceCurso--;
-                if (indiceCurso <=0 || indiceCurso >= cursos.size()){
-                    std::cout << "\nCurso invalido, tente novamente.\n";
-                    break;
-                }
+                do{
+                cout << "Escolha o curso: ";
+                    cin >> indiceCurso;
+                    indiceCurso--;
+                    if (indiceCurso < 0 || indiceCurso >= cursos.size()){
+                        cout << "\nCurso invalido, tente novamente.\n";
+                    }
+                } while(indiceCurso < 0 || indiceCurso >= cursos.size());
 
-                std::cout << "Quantidade de parcelas:";
-                std::cin >> qtdParcelas;
+                cout << "Quantidade de parcelas:";
+                cin >> qtdParcelas;
 
                 Venda venda;
                 venda.setNumero(contratos.size() + 1);
@@ -176,12 +235,12 @@ int main(){
                                     funcionarios[indiceFuncionario], qtdParcelas);
                 contratos.push_back(contrato);
 
-                std::cout << "\nVenda realizada com sucesso!\n";
-                contrato.exibirContrato();
+                cout << "\nVenda realizada com sucesso!\n";
+
                 break;
             }
             case 5: {
-                cout << "\n===== ALUNOS =====\n";
+                cout << "\n=====LISTA DE ALUNOS =====\n";
                 for(size_t i = 0; i < alunos.size(); i++) {
                     cout << "\nAluno " << i + 1 << endl;
                     alunos[i].exibirDados();
@@ -189,7 +248,7 @@ int main(){
                 break;
             }
             case 6: {
-                cout << "\n===== CURSOS =====\n";
+                cout << "\n===== LISTA DE CURSOS =====\n";
                 for(size_t i = 0; i < cursos.size(); i++) {
                     cout << "\nCurso " << i + 1 << endl;
                     cursos[i].exibirCursos();
@@ -199,7 +258,6 @@ int main(){
             case 7: {
                 cout << "\n===== LISTA DE CONTRATOS =====\n";
                 for(size_t i = 0; i < contratos.size(); i++) {
-                    cout << "\nContrato " << i + 1 << endl;
                     contratos[i].exibirContrato();
                 }
                 break;

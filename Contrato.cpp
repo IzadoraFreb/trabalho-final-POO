@@ -1,5 +1,6 @@
 #include "Contrato.h"
 #include <iostream>
+#include <iomanip>
 
 Contrato::Contrato() {
     numero = 0;
@@ -27,10 +28,10 @@ void Contrato::gerarParcelas() {
 
 void Contrato::exibirContrato() {
     std::cout << "--- Contrato " << numero << " ---" << std::endl;
-    std::cout << "Valor Total: R$ " << valorTotal << std::endl;
+    std::cout << "Valor Total: R$ " << std::fixed << std::setprecision(2) << valorTotal << std::endl;
     std::cout << "Parcelado em: " << qtdParcelas  << std::endl;
     for (auto parcela : parcelas) {
-        std::cout << "Parcela " << parcela.getNumero() << ": R$ " << parcela.getValor();
+        std::cout << "Parcela " << parcela.getNumero() << ": R$ " << std::fixed << std::setprecision(2) << parcela.getValor();
         if (parcela.estaPaga()) {
             std::cout << " - Pago" << std::endl;
         } else {
